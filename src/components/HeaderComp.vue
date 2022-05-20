@@ -1,6 +1,6 @@
 <template>
 
-<div>
+<header>
   <div class="container-fluid d-flex justify-content-between align-items-center">
     <h4>logo</h4>
     <div class="change">
@@ -10,7 +10,7 @@
       </select>
     </div> 
   </div>
-</div>
+</header>
 
 </template>
 

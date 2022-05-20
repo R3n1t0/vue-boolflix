@@ -12,7 +12,6 @@
 import HeaderComp from "./components/HeaderComp.vue"
 import MainComp from "./components/MainComp.vue"
 import axios from "axios"
-import { METHODS } from "http"
 
 export default {
   name: 'App',
@@ -37,7 +36,7 @@ export default {
     getApiUrl(){
       axios.get(this.apiUrl)
       .then(res => {
-        this.movieList = res.data
+        console.log(res);
       })
     }
   }
@@ -45,5 +44,6 @@ export default {
 </script>
 
 <style lang="scss">
+@import './assets/style/general';
 
 </style>

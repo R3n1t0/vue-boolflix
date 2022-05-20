@@ -1,7 +1,7 @@
 <template>
   <main>
     <CardComp 
-      v-for="(movie, index) in movieList" 
+      v-for="(movie, index) in movieListFiltered" 
       :key="`movie${index}`" 
       :movie="movie"
     />
@@ -16,6 +16,10 @@ import CardComp from "./CardComp.vue";
 export default {
   name: "MainComp",
 
+  props:{
+    movieSearched: String
+  },
+
   components: { CardComp },
 
   data() {
@@ -25,7 +29,7 @@ export default {
       apiParams: {
         api_key: "e39b9201864cae31abf65f1dcac8bcab",
         language: "it-IT",
-        query: "kill bill"
+        query: ""
         },
 
         movieList: []
@@ -45,8 +49,19 @@ export default {
       this.movieList = res.data.results;
       console.log(this.movieList);
       });
+    },
+
+    movieSearching(movieSearched){
+      this.query = movieSearched
     }
+
   },
+
+  computed:{
+    movieListFiltered(){
+      return this.movieList.filter(this.query)
+    }
+  }
     
 }
 </script>

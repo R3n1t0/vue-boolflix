@@ -1,9 +1,9 @@
 <template>
   <div>
     
-    <HeaderComp />
+    <HeaderComp @movieSearching="movieSearching"/>
 
-    <MainComp />
+    <MainComp :movieSearched="movieSearched"/>
 
   </div>
 </template>
@@ -19,6 +19,19 @@ export default {
     HeaderComp,
     MainComp
   },
+
+  data(){
+    return{
+      movieSearched: ""
+    }
+  },
+
+  methods:{
+    movieSearching(movieSearched){
+      this.movieSearched = movieSearched
+      console.log(movieSearched);
+    }
+  }
 
 }
 </script>

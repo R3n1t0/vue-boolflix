@@ -6,7 +6,8 @@
     <div class="change">
       <input type="text" v-model.trim="movieSearched" @keyup.enter="$emit('movieSearching', movieSearched)">
       <select v-model.trim="genreSelected" @change="$emit('genreSelecting', genreSelected)" name="search" id="" class="mx-2">
-        <option value=""></option>
+        <option value="Movies">Movies</option>
+        <option value="Series">Series</option>
       </select>
     </div> 
   </div>

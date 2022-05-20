@@ -43,6 +43,7 @@ export default {
       })
       .then(res => {
       this.movieList = res.data.results;
+      console.log(this.movieList);
       });
     }
   },

@@ -1,9 +1,9 @@
 <template>
   <div>
-    <p>titolo</p>
-    <p>titolo originale</p>
-    <p>lingua</p>
-    <p>voto</p>
+    <p>Titolo del film: {{movie.title}}</p>
+    <p>Titolo oiginale: {{movie.original_title}}</p>
+    <p>Lingua: {{movie.original_language}}</p>
+    <p>Voto: {{movie.vote_average}}</p>
   </div>
 </template>
 

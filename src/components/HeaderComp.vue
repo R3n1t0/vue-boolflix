@@ -1,10 +1,14 @@
 <template>
 
 <div>
-  <div class="container-fluid d-flex justify-content-between">
+  <div class="container-fluid d-flex justify-content-between align-items-center">
     <h4>logo</h4>
-    <div><input type="text">
-    <select name="" id=""></select></div> 
+    <div class="change">
+      <input type="text">
+      <select name="" id="" class="mx-2">
+        <option value=""></option>
+      </select>
+    </div> 
   </div>
 </div>
 

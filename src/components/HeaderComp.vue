@@ -5,11 +5,11 @@
     <img src="../assets/img/netflix_official_logo_icon_168085.png" alt="">
     <div class="change">
       <input type="text" v-model.trim="searched" @keyup.enter="$emit('searching', searched)">
-      <select @change="onchange" name="search" id="" class="mx-2">
+<!--       <select @change="onChange" name="search" id="" class="mx-2">
         <option value="">All</option>
         <option value="Movies">Movies</option>
         <option value="Series">Series</option>
-      </select>
+      </select> -->
     </div> 
   </div>
 </header>
@@ -28,10 +28,10 @@ export default {
   },
 
   methods:{
-    onchange(e){
+/*     onChange(e){
       this.genreSelected = e.target.value;
       this.$emit('genreSelecting', this.genreSelected)
-    }
+    } */
   }
 }
 </script>
@@ -39,10 +39,12 @@ export default {
 <style lang="scss" scoped>
 header{
   height: 80px;
-  background-color: black;
+  background-color:#141414;
+  
   .rl-container{
     flex-basis: 100%;
     height: 100%;
+
     img{
       width: 100px;
       height: 50px;

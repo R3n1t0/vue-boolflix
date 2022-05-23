@@ -1,9 +1,19 @@
 <template>
-  <div>
-    <h3>Titolo del film: {{movie.title}}</h3>
-    <h4>Titolo oiginale: {{movie.original_title}}</h4>
-    <p>Lingua: {{movie.original_language}}</p>
-    <p>Voto: {{movie.vote_average}}</p>
+  <div class="rl-card p-2">
+
+    <div class="card-inner">
+      <div class="card-front">
+        <img :src="`http://image.tmdb.org/t/p/w500/${movie.poster_path}`" :alt="movie.title">
+      </div>
+
+      <div class="card-back p-2">
+        <h3>Titolo del film: {{movie.title}}</h3>
+        <h4>Titolo oiginale: {{movie.original_title}}</h4>
+        <p>Lingua: {{movie.original_language}}</p>
+        <p>Voto: {{movie.vote_average}}</p>
+      </div>
+    </div>
+
   </div>
 </template>
 
@@ -18,5 +28,43 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+.rl-card{
+  width: 20%;
+  height: 300px;
+  background-color: transparent;
+  perspective: 1000px;
+
+  .card-inner {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    text-align: center;
+    transition: transform 0.6s;
+    transform-style: preserve-3d;
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+
+    .card-front, .card-back {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      -webkit-backface-visibility: hidden;
+      backface-visibility: hidden;
+      
+      img{
+        width: 100%;
+        height: 100%;
+      }
+    }
+
+    .card-back {
+      background-color: transparent;
+      color: white;
+      transform: rotateY(180deg);
+    }
+  }
+}
+.rl-card:hover .card-inner {
+  transform: rotateY(180deg);
+}
 
 </style>

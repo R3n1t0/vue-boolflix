@@ -1,13 +1,15 @@
 <template>
   <main class="container">
 
-    <CardMovieComp
-      v-show="movieShow" 
+    <h2>Film</h2>
+    <CardMoviesComp
+      v-show="moviesShow" 
       v-for="movie in movieList" 
       :key="movie.id" 
       :movie="movie"
     />
 
+    <h2>Serie</h2>
     <CardSeriesComp 
       v-show="seriesShow"
       v-for="serie in seriesList" 
@@ -19,14 +21,14 @@
 </template>
 
 <script>
-import CardMovieComp from "./CardMovieComp.vue";
+import CardMoviesComp from "./CardMoviesComp.vue";
 import CardSeriesComp from "./CardSeriesComp.vue";
 
 export default {
   name: "MainComp",
 
   components: {
-    CardMovieComp,
+    CardMoviesComp,
     CardSeriesComp
   },
 
@@ -44,10 +46,12 @@ export default {
   },
 
   methods:{
-    movieShow(){
+    moviesShow(){
       if(this.genreSelected === "" || this.genreSelected === "Movie") this.movies = true;
       else this.movies = false;
-      return this.movies
+      console.log(this.movies);
+
+      return this.movies 
     },
 
     seriesShow(){

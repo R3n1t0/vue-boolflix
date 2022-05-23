@@ -1,7 +1,7 @@
 <template>
   <div>
-    <p>Titolo del film: {{movie.title}}</p>
-    <p>Titolo oiginale: {{movie.original_title}}</p>
+    <h3>Titolo del film: {{movie.title}}</h3>
+    <h4>Titolo oiginale: {{movie.original_title}}</h4>
     <p>Lingua: {{movie.original_language}}</p>
     <p>Voto: {{movie.vote_average}}</p>
   </div>
@@ -9,7 +9,7 @@
 
 <script>
 export default {
-  name: "CardMovieComp",
+  name: "CardMoviesComp",
 
   props:{
     movie: Object

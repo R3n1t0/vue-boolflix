@@ -3,7 +3,7 @@
     
     <HeaderComp @searching="searching" @genreSelecting="genreSelecting"/>
 
-    <MainComp :movieList="movieList" :seriesList="seriesList" genreSelected="genreSelected"/>
+    <MainComp :movieList="movieList" :seriesList="seriesList" :genreSelected="genreSelected"/>
 
   </div>
 </template>

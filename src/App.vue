@@ -1,7 +1,7 @@
 <template>
   <div>
     <div v-if="!error">
-      <HeaderComp @searching="searching" @genreSelecting="genreSelecting"/>
+      <HeaderComp @searching="searching"/>
 
       <MainComp :movieList="movieList" :seriesList="seriesList" :genreSelected="genreSelected"/>
     </div>

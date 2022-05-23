@@ -1,11 +1,12 @@
 <template>
 
 <header>
-  <div class="container-fluid d-flex justify-content-between align-items-center">
-    <h4>logo</h4>
+  <div class="rl-container container-fluid d-flex justify-content-between align-items-center">
+    <img src="../assets/img/netflix_official_logo_icon_168085.png" alt="">
     <div class="change">
-      <input type="text" v-model.trim="movieSearched" @keyup.enter="$emit('movieSearching', movieSearched)">
-      <select v-model.trim="genreSelected" @change="$emit('genreSelecting', genreSelected)" name="search" id="" class="mx-2">
+      <input type="text" v-model.trim="searched" @keyup.enter="$emit('searching', searched)">
+      <select @change="onchange" name="search" id="" class="mx-2">
+        <option value="">All</option>
         <option value="Movies">Movies</option>
         <option value="Series">Series</option>
       </select>
@@ -21,13 +22,42 @@ export default {
 
   data(){
     return{
-      movieSearched: "",
+      searched: "",
       genreSelected: ""
+    }
+  },
+
+  methods:{
+    onchange(e){
+      this.genreSelected = e.target.value;
+      this.$emit('genreSelecting', this.genreSelected)
     }
   }
 }
 </script>
 
 <style lang="scss" scoped>
+header{
+  height: 80px;
+  background-color: black;
+  .rl-container{
+    flex-basis: 100%;
+    height: 100%;
+    img{
+      width: 100px;
+      height: 50px;
+      margin-left: 10px;
+    }
+
+    input{
+      border-radius: 5px;
+    }
+
+    select{
+      padding: 1px;
+      border-radius: 5px;
+    }
+  }
+}
 
 </style>

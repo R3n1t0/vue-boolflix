@@ -9,7 +9,7 @@
 
 <script>
 export default {
-  name: "CardComp",
+  name: "CardMovieComp",
 
   props:{
     movie: Object

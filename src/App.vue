@@ -1,9 +1,9 @@
 <template>
   <div>
     
-    <HeaderComp @movieSearching="movieSearching"/>
+    <HeaderComp @searching="searching" @genreSelecting="genreSelecting"/>
 
-    <MainComp :movieList="movieList"/>
+    <MainComp :movieList="movieList" :seriesList="seriesList" genreSelected="genreSelected"/>
 
   </div>
 </template>
@@ -23,7 +23,8 @@ export default {
 
   data(){
     return{
-      apiUrl: "https://api.themoviedb.org/3/search/movie",
+      apiMovieUrl: "https://api.themoviedb.org/3/search/movie",
+      apiSeriesUrl: "https://api.themoviedb.org/3/search/tv",
 
       apiParams: {
         api_key: "e39b9201864cae31abf65f1dcac8bcab",
@@ -32,27 +33,40 @@ export default {
       },
 
       movieList: [],
+      seriesList: [],
 
-      movieSearched: ""
+      searched: "",
+      genreSelected: ""
     }
   },
 
-  methods: {
-    getApi() {
-      axios.get(this.apiUrl, {
+  methods:{
+    getMovieApi() {
+      axios.get(this.apiMovieUrl, {
       params: this.apiParams
       })
       .then(res => {
       this.movieList = res.data.results;
-      console.log(this.movieList);
       });
     },
 
-    movieSearching(movieSearched){
-      
-      this.apiParams.query = movieSearched
-      this.getApi()
-      console.log(this.apiParams.query);
+    getSeriesApi() {
+      axios.get(this.apiSeriesUrl, {
+      params: this.apiParams
+      })
+      .then(res => {
+      this.seriesList = res.data.results;
+      });
+    },
+
+    searching(searched){
+      this.apiParams.query = searched
+      this.getMovieApi();
+      this.getSeriesApi()
+    },
+
+    genreSelecting(genreSelected){
+      this.genreSelected = genreSelected
     }
   }
 }

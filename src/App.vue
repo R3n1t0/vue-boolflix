@@ -3,7 +3,7 @@
     <div v-if="!error">
       <HeaderComp @searching="searching"/>
 
-      <MainComp :movieList="movieList" :seriesList="seriesList" :genreSelected="genreSelected"/>
+      <MainComp :movieList="movieList" :seriesList="seriesList"/>
     </div>
 
     <div v-else>
@@ -75,9 +75,6 @@ export default {
       this.getSeriesApi()
     },
 
-/*     genreSelecting(genreSelected){
-      this.genreSelected = genreSelected
-    } */
   }
 }
 </script>

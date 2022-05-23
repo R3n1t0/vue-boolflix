@@ -3,7 +3,7 @@
 
     <div class="card-inner">
       <div class="card-front">
-        <img :src="`http://image.tmdb.org/t/p/w500/${movie.poster_path}`" :alt="movie.title">
+        <img :src="`http://image.tmdb.org/t/p/w342/${movie.poster_path}`" :alt="movie.title">
       </div>
 
       <div class="card-back p-2">
@@ -30,7 +30,7 @@ export default {
 <style lang="scss" scoped>
 .rl-card{
   width: 20%;
-  height: 300px;
+  height: 350px;
   background-color: transparent;
   perspective: 1000px;
 

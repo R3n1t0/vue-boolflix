@@ -1,5 +1,6 @@
 <template>
 <main class="container-fluid">
+
   <h2 class="m-3">Film</h2>
   <div class="rl-container mt-3 d-flex">
     <CardMoviesComp
@@ -8,6 +9,7 @@
       :movie="movie"
     />
   </div>
+  
 </main>
 
 </template>

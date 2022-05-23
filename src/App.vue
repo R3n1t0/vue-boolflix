@@ -1,9 +1,14 @@
 <template>
   <div>
-    
-    <HeaderComp @searching="searching" @genreSelecting="genreSelecting"/>
+    <div v-if="!error">
+      <HeaderComp @searching="searching" @genreSelecting="genreSelecting"/>
 
-    <MainComp :movieList="movieList" :seriesList="seriesList" :genreSelected="genreSelected"/>
+      <MainComp :movieList="movieList" :seriesList="seriesList" :genreSelected="genreSelected"/>
+    </div>
+
+    <div v-else>
+      <h1>Errore: Indirizzo sbagliato</h1>
+    </div>
 
   </div>
 </template>
@@ -36,7 +41,8 @@ export default {
       seriesList: [],
 
       searched: "",
-      genreSelected: ""
+      genreSelected: "",
+      error: false
     }
   },
 
@@ -55,8 +61,12 @@ export default {
       params: this.apiParams
       })
       .then(res => {
-      this.seriesList = res.data.results;
-      });
+        this.seriesList = res.data.results;
+      })
+      .catch((error) => {
+        console.log(error);
+        this.error = true
+      })
     },
 
     searching(searched){
@@ -65,9 +75,9 @@ export default {
       this.getSeriesApi()
     },
 
-    genreSelecting(genreSelected){
+/*     genreSelecting(genreSelected){
       this.genreSelected = genreSelected
-    }
+    } */
   }
 }
 </script>

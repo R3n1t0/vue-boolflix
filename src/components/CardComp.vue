@@ -9,7 +9,8 @@
       <div class="card-back p-2">
         <h3>Titolo del film: {{cardData.title || cardData.name}}</h3>
         <h4>Titolo oiginale: {{cardData.original_title || cardData.original_name}}</h4>
-        <p>Lingua: {{cardData.original_language}}</p>
+        <img v-if="flags.includes(cardData.original_language)" :src="require(`../assets/img/${cardData.original_language}.png`)" alt="">
+        <p v-else>Lingua: {{cardData.original_language}}</p>
         <p>Voto: {{cardData.vote_average}}</p>
       </div>
     </div>
@@ -20,6 +21,12 @@
 <script>
 export default {
   name: "CardComp",
+
+  data(){
+    return{
+      flags: ["it", "en"]
+    }
+  },
 
   props:{
     cardData: Object
@@ -57,6 +64,11 @@ export default {
       background-color: transparent;
       color: white;
       transform: rotateY(180deg);
+      img{
+        width: 30px;
+        height: 30px;
+        padding: 5px;
+      }
     }
   }
 }

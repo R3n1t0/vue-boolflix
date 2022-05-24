@@ -2,23 +2,12 @@
 <main class="container-fluid">
 
   <div class="movie">
-    <h2 class="p-4 m-2">Film</h2>
+    <h2 class="p-4 m-2">{{title}}</h2>
     <div class="rl-container my-3 d-flex">
-      <CardMoviesComp
-        v-for="movie in movieList" 
-        :key="movie.id" 
-        :movie="movie"
-      />
-    </div>
-  </div>
-
-  <div class="series">
-    <h2 class="p-3 m-2">Serie</h2>
-    <div class="rl-container my-3 d-flex">
-      <CardSeriesComp
-        v-for="serie in seriesList" 
-        :key="serie.id" 
-        :serie="serie"
+      <CardComp
+        v-for="card in cardList" 
+        :key="card.id" 
+        :cardData="card"
       />
     </div>
   </div>
@@ -28,22 +17,19 @@
 </template>
 
 <script>
-import CardMoviesComp from "./CardMoviesComp.vue";
-import CardSeriesComp from "./CardSeriesComp.vue";
-
+import CardComp from "./CardComp.vue";
 
 export default {
   name: "MainComp",
 
   components: {
-    CardMoviesComp,
-    CardSeriesComp
+    CardComp,
   },
 
   props:{
-    movieList: Array,
-    seriesList: Array,
-    genreSelected: String
+    cardList: Array,
+    genreSelected: String,
+    title: String
   },
 
   data(){

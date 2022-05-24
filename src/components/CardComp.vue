@@ -3,14 +3,14 @@
 
     <div class="card-inner">
       <div class="card-front">
-        <img :src="`http://image.tmdb.org/t/p/w342/${movie.poster_path}`" :alt="movie.title">
+        <img :src="`http://image.tmdb.org/t/p/w342/${cardData.poster_path}`" :alt="cardData.title">
       </div>
 
       <div class="card-back p-2">
-        <h3>Titolo del film: {{movie.title}}</h3>
-        <h4>Titolo oiginale: {{movie.original_title}}</h4>
-        <p>Lingua: {{movie.original_language}}</p>
-        <p>Voto: {{movie.vote_average}}</p>
+        <h3>Titolo del film: {{cardData.title || cardData.name}}</h3>
+        <h4>Titolo oiginale: {{cardData.original_title || cardData.original_name}}</h4>
+        <p>Lingua: {{cardData.original_language}}</p>
+        <p>Voto: {{cardData.vote_average}}</p>
       </div>
     </div>
 
@@ -19,10 +19,10 @@
 
 <script>
 export default {
-  name: "CardMoviesComp",
+  name: "CardComp",
 
   props:{
-    movie: Object
+    cardData: Object
   }
 }
 </script>
@@ -33,7 +33,6 @@ export default {
   height: 350px;
   background-color: transparent;
   perspective: 1000px;
-
   .card-inner {
     position: relative;
     width: 100%;
@@ -42,7 +41,6 @@ export default {
     transition: transform 0.8s;
     transform-style: preserve-3d;
     box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
-
     .card-front, .card-back {
       position: absolute;
       width: 100%;
@@ -55,7 +53,6 @@ export default {
         height: 100%;
       }
     }
-
     .card-back {
       background-color: transparent;
       color: white;
@@ -66,5 +63,4 @@ export default {
 .rl-card:hover .card-inner {
   transform: rotateY(180deg);
 }
-
 </style>

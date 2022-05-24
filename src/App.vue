@@ -3,7 +3,9 @@
     <div v-if="!error">
       <HeaderComp @searching="searching"/>
 
-      <MainComp :movieList="movieList" :seriesList="seriesList"/>
+      <MainComp title="Film" :cardList="movieList"/>
+      <MainComp title="Serie Tv" :cardList="seriesList"/>
+
     </div>
 
     <div v-else>
@@ -47,13 +49,25 @@ export default {
   },
 
   methods:{
+     searching(searched){
+      this.apiParams.query = searched
+      if(searched.length > 0){
+        this.getMovieApi(); 
+        this.getSeriesApi();
+      } 
+    },
+
     getMovieApi() {
       axios.get(this.apiMovieUrl, {
       params: this.apiParams
       })
       .then(res => {
       this.movieList = res.data.results;
-      });
+      })
+      .catch((error) => {
+        console.log(error);
+        this.error = true
+      })
     },
 
     getSeriesApi() {
@@ -67,12 +81,6 @@ export default {
         console.log(error);
         this.error = true
       })
-    },
-
-    searching(searched){
-      this.apiParams.query = searched
-      this.getMovieApi();
-      this.getSeriesApi()
     },
 
   }

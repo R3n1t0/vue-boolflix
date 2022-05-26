@@ -1,9 +1,9 @@
 <template>
-<main class="container-fluid">
+<main class="container">
 
   <div class="movie">
-    <h2 class="p-4 m-2">{{title}}</h2>
-    <div class="rl-container my-3 d-flex">
+    <h2 class="mt-5 mx-2">{{title}}</h2>
+    <div class="rl-container my-2 d-flex">
       <CardComp
         v-for="card in cardList" 
         :key="card.id" 
@@ -44,7 +44,6 @@ export default {
 <style lang="scss" scoped>
 .movie, .series{
   width: 100%;
-  background-color: #141414;
   h2{
     color: #a9a9a9;
   }

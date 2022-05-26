@@ -11,7 +11,24 @@
         <h4>Titolo oiginale: {{cardData.original_title || cardData.original_name}}</h4>
         <img v-if="flags.includes(cardData.original_language)" :src="require(`../assets/img/${cardData.original_language}.png`)" alt="">
         <p v-else>Lingua: {{cardData.original_language}}</p>
-        <p>Voto: {{cardData.vote_average}}</p>
+        <p>Voto: {{Math.round(cardData.vote_average)/2}}</p>
+
+        <i 
+          v-for="i in Math.floor(Math.round(cardData.vote_average)/2)"
+          :key="`a${i}`"
+          class="fa-star fa-solid"></i>
+
+        <i v-if="Math.round(cardData.vote_average) % 2" class="fa-solid fa-star-half-stroke"></i> 
+              
+        <i 
+          v-for="i in (5 - Math.floor(Math.round(cardData.vote_average)/2) - (Math.round(cardData.vote_average) % 2) )"
+          :key="`b${i}`"
+          class="fa-star fa-regular">
+        </i>
+
+        <p class="description">
+          {{cardData.overview}}
+        </p>
       </div>
     </div>
 
@@ -68,6 +85,10 @@ export default {
         width: 30px;
         height: 30px;
         padding: 5px;
+      }
+      .description{
+      height: 50%;
+      overflow-y: auto;
       }
     }
   }

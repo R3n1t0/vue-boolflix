@@ -3,8 +3,8 @@
     <div v-if="!error">
       <HeaderComp @searching="searching"/>
 
-      <MainComp title="Film" :cardList="movieList"/>
-      <MainComp title="Serie Tv" :cardList="seriesList"/>
+      <MainComp v-if="movie.length > 0" title="Film" :cardList="movie"/>
+      <MainComp v-if="tv.length > 0" title="Serie Tv" :cardList="tv"/>
 
     </div>
 
@@ -30,8 +30,7 @@ export default {
 
   data(){
     return{
-      apiMovieUrl: "https://api.themoviedb.org/3/search/movie",
-      apiSeriesUrl: "https://api.themoviedb.org/3/search/tv",
+      apiMovieUrl: "https://api.themoviedb.org/3/search/",
 
       apiParams: {
         api_key: "e39b9201864cae31abf65f1dcac8bcab",
@@ -39,8 +38,8 @@ export default {
         query: ""
       },
 
-      movieList: [],
-      seriesList: [],
+      movie: [],
+      tv: [],
 
       searched: "",
       genreSelected: "",
@@ -49,33 +48,26 @@ export default {
   },
 
   methods:{
-     searching(searched){
+     searching(searched, genreSelected){
+      this.movie = [];
+      this.tv = [];
       this.apiParams.query = searched
       if(searched.length > 0){
-        this.getMovieApi(); 
-        this.getSeriesApi();
+        if(genreSelected === ""){
+          this.getApi("movie"); 
+          this.getApi("tv");
+        }else{
+          this.getApi(genreSelected)
+        }  
       } 
     },
 
-    getMovieApi() {
-      axios.get(this.apiMovieUrl, {
+    getApi(type) {
+      axios.get(this.apiMovieUrl + type, {
       params: this.apiParams
       })
       .then(res => {
-      this.movieList = res.data.results;
-      })
-      .catch((error) => {
-        console.log(error);
-        this.error = true
-      })
-    },
-
-    getSeriesApi() {
-      axios.get(this.apiSeriesUrl, {
-      params: this.apiParams
-      })
-      .then(res => {
-        this.seriesList = res.data.results;
+      this[type] = res.data.results;
       })
       .catch((error) => {
         console.log(error);
